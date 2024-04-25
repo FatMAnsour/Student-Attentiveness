@@ -4,6 +4,8 @@ import numpy as np
 import threading
 import time
 from eye_tracking import EyeTracker
+import os
+
 
 app = Flask(__name__)
 eye_tracker = EyeTracker()
@@ -57,4 +59,5 @@ def stop_video():
     return "Video capture stopped"
 
 if __name__ == '__main__':
-    app.run(debug=True)
+  port = int(os.environ.get('HOST_PORT', 5000))  # Default to 5000 if not set
+  app.run(host='0.0.0.0', port=port)  # Listen on all interfaces (0.0.0.0)
