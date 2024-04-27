@@ -36,7 +36,11 @@ def start_video_capture():
     thread = threading.Thread(target=process_video)
     thread.daemon = True
     thread.start()
-
+    
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
+    
 @app.route('/start_video', methods=['POST'])
 def start_video():
     start_video_capture()
